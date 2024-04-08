@@ -6,7 +6,7 @@
   "private": "true",
   "type": "module",
   "scripts": {
-    "devstart": "nodemon -r dotenv/config src/index.js"
+    "devstart": "nodemon -r dotenv/config src/app.js"
   },
   "author": "",
   "license": "ISC",
