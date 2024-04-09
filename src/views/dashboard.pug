@@ -1,5 +1,10 @@
 extends layout 
 
 block content 
-
-  p Welcome #{firstName} #{lastName}
+  main 
+    if typeof user !== "undefined" && user.firstName
+      h2 Hello, #{user.firstName}
+    else
+      p You are not logged in
+      a(href="/users/login") Log In
+ 

@@ -1,31 +1,33 @@
 import bcrypt from "bcryptjs";
 import { body, validationResult } from "express-validator";
+import passport from "passport";
 
 import { User } from "../models/user.model.js";
 
 const registerUser = [
   body("firstName")
     .trim()
-    .isEmpty()
+    .notEmpty()
     .withMessage("First Name is required")
     .escape(),
 
   body("lastName")
     .trim()
-    .isEmpty()
+    .notEmpty()
     .withMessage("Last Name is required")
     .escape(),
 
   body("username")
     .trim()
-    .isEmpty()
+    .notEmpty()
     .withMessage("Email is required")
     .isEmail()
+    .withMessage("Invalid email format")
     .escape(),
 
   body("password")
     .trim()
-    .isEmpty()
+    .notEmpty()
     .withMessage("Password is required")
     .isLength({ min: 8, max: 24 })
     .withMessage("Password must be 8-24 characters long")
@@ -52,11 +54,16 @@ const registerUser = [
       });
 
       await user.save();
-      res.render("dashboard", { firstName, lastName });
+      res.render("dashboard", { user });
     } catch (error) {
       return next(error);
     }
   },
 ];
 
-export { registerUser };
+const loginUser = passport.authenticate("local", {
+  successRedirect: "/dashboard",
+  failureRedirect: "/users/login",
+});
+
+export { registerUser, loginUser };

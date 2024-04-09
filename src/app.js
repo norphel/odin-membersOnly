@@ -45,11 +45,17 @@ app.use(passport.session());
 import "./authentication/passportUtils.js";
 
 app.get("/", (req, res) => {
-  res.render("index");
+  if (req.user) {
+    res.redirect("/dashboard");
+  } else {
+    res.render("index");
+  }
 });
 
 // import routes
 import userRouter from "./routes/user.routes.js";
+import dashboardRouter from "./routes/dashboard.routes.js";
 
 // routes declaration
 app.use("/users", userRouter);
+app.use("/dashboard", dashboardRouter);
