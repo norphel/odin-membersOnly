@@ -23,13 +23,6 @@ const registerUser = [
     .isEmail()
     .escape(),
 
-  body("username").custom(async (value) => {
-    const existingUser = await User.findOne({ username: username });
-    if (existingUser) {
-      throw new Error("A user with given e-mail already exists!");
-    }
-  }),
-
   body("password")
     .trim()
     .isEmpty()
@@ -39,7 +32,13 @@ const registerUser = [
     .escape(),
 
   async (req, res, next) => {
+    const errors = validationResult(req);
+
     const { firstName, lastName, username, password } = req.body;
+
+    if (!errors.isEmpty()) {
+      res.render("signup", { firstName, lastName, username });
+    }
 
     try {
       const hashedPassword = await bcrypt.hash(password, 10);
@@ -53,7 +52,7 @@ const registerUser = [
       });
 
       await user.save();
-      res.status(201).json({ message: "User registered successfully" });
+      res.render("dashboard", { firstName, lastName });
     } catch (error) {
       return next(error);
     }
