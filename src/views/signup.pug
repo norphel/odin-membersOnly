@@ -1,0 +1,27 @@
+extends layout 
+
+block content 
+
+  main
+    form(action="" method="POST")
+      section
+        label(for="firstName") First Name 
+        span *
+        input(id="firstName" name="firstName" type="text" required autofocus)
+         
+      section
+        label(for="lastName") Last Name 
+        span *
+        input(id="lastName" name="lastName" type="text" required)
+
+      section
+        label(for="username") Email 
+        span *
+        input(id="username" name="username" type="email" required)
+
+      section 
+        label(for="password") Password 
+        span *
+        input(id="password" name="password" type="password" required)
+        
+      button(type="submit" class="signup-button") Sign Up

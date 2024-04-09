@@ -3,7 +3,6 @@ import session from "express-session";
 import passport from "passport";
 import dotenv from "dotenv";
 import MongoStore from "connect-mongo";
-import path from "path";
 
 import connectDB from "./database/db.js";
 import { DB_NAME } from "./constants.js";
@@ -24,13 +23,12 @@ connectDB()
     console.log("MONGODB connection failed!!! ", err);
   });
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
-app.set("views", path.join(__dirname, "views"));
+app.set("views", "src/views");
 app.set("view engine", "pug");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static("src/public"));
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
