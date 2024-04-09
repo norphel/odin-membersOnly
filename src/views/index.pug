@@ -1,13 +1,9 @@
-doctype html
-html(lang="en")
-  head 
-    meta(charset="UTF-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title Odin Members Only
-    link(rel="stylesheet" href="styles.css")
-  body 
-    header 
-      h1 Odin Members Only 
-      div(class="buttons")
-        button(class="login-button") Log In 
-        button(class="signup-button") Sign Up
+extends layout 
+
+block content 
+  main 
+    h1 Welcome Odinites! 
+    p Chat and have fun with fellow Odinites with perks for our exclusive members
+    div(class="links")
+      a(class="login-button" href="/users/login") Log In 
+      a(class="signup-button" href="/users/signup") Sign Up
