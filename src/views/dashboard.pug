@@ -8,7 +8,10 @@ block content
         p No messages yet!
       else 
         if user.membershipStatus === false 
-          p You are not an exclusive member yet! Join the private club to see the message author and dates.
+          p You are not an exclusive member yet! 
+            span 
+              a(href="/dashboard/membership" class="join-membership" style={"padding": "5px", "text-decoration": "underline"}) Join
+            span the private club to see the message author and dates.
           for msg in messages
             div(class="message")
               p(class="message-title")= msg.title 
@@ -36,6 +39,6 @@ block content
         textarea(name="text", cols="20", rows="5" required placeholder="Message" value=(text === "undefined" ))
         button(type="submit" class="send") Send  
 
-    a(href="/users/logout") Log Out
+    a(href="/users/logout" style={"margin-bottom": "20px"}) Log Out
     
  

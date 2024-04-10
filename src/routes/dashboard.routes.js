@@ -1,6 +1,9 @@
 import { Router } from "express";
 import multer from "multer";
-import { sendMessage } from "../controllers/dashboard.controller.js";
+import {
+  sendMessage,
+  joinMembership,
+} from "../controllers/dashboard.controller.js";
 
 const router = Router();
 const upload = multer();
@@ -18,5 +21,11 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/newmessage", upload.none(), sendMessage);
+
+router.get("/membership", (req, res) => {
+  res.render("membership", { user: req.user });
+});
+
+router.post("/membership", upload.none(), joinMembership);
 
 export default router;

@@ -1,0 +1,17 @@
+extends layout 
+
+block content 
+  main 
+    h2 Hello, #{user.firstName}!
+    h4(style={"margin-bottom": "20px", "margin-top": "5px"}) Ready to join the Private Club?
+    p Enter the passcode!  
+    form(action="" method="POST" style={"margin-block": "20px"})
+      input(type="text" name="passcode" placeholder="passcode" required)
+      if error 
+        p(class="error-message")= error
+      button(type="submit" class="submit") Submit 
+
+    p(style={"color":"grey"}) Hint: Odinites learn at ...?
+
+    p(style={"font-style": "normal", "margin-top": "20px"}) Don't want to join yet? 
+      a(href="/dashboard") Go back 
