@@ -22,8 +22,6 @@ const sendMessage = [
       res.render("dashboard", { user, title, text });
     }
 
-    const messages = await Message.find().populate("author").exec();
-
     try {
       const message = new Message({
         title,

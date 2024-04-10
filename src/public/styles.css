@@ -104,6 +104,10 @@ main form div:last-of-type a {
 .message {
   display: flex;
   flex-direction: column;
+  border: 0.5px solid rgba(132, 132, 132, 0.5);
+  padding: 1rem;
+  border-radius: 10px;
+  max-width: 320px;
 }
 .message-title {
   font-weight: bold;
@@ -113,7 +117,7 @@ main form div:last-of-type a {
 }
 .message-text {
   text-align: left;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
 }
 .message-author-date {
   display: flex;

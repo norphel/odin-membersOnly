@@ -10,8 +10,6 @@ import { Message } from "../models/message.model.js";
 router.get("/", async (req, res) => {
   const user = req.user;
   const messages = await Message.find().populate("author").exec();
-  console.log(messages);
-  console.log(user);
   res.render("dashboard", { user, messages });
 });
 

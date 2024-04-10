@@ -6,13 +6,21 @@ import { registerUser, loginUser } from "../controllers/user.controller.js";
 const router = Router();
 
 router.get("/signup", (req, res) => {
-  res.render("signup");
+  if (req.user) {
+    res.redirect("/dashboard");
+  } else {
+    res.render("signup");
+  }
 });
 
 router.post("/signup", upload.none(), registerUser);
 
 router.get("/login", (req, res) => {
-  res.render("login");
+  if (req.user) {
+    res.redirect("/dashboard");
+  } else {
+    res.render("login");
+  }
 });
 
 router.post("/login", upload.none(), loginUser);
