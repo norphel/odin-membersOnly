@@ -16,10 +16,9 @@ const sendMessage = [
 
     const { title, text } = req.body;
     const author = req.user;
-    const user = author;
 
     if (!errors.isEmpty()) {
-      res.render("dashboard", { user, title, text });
+      return errors;
     }
 
     try {

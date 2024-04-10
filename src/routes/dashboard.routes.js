@@ -8,9 +8,13 @@ const upload = multer();
 import { Message } from "../models/message.model.js";
 
 router.get("/", async (req, res) => {
-  const user = req.user;
   const messages = await Message.find().populate("author").exec();
-  res.render("dashboard", { user, messages });
+
+  if (req.isAuthenticated()) {
+    res.render("dashboard", { user: req.user, messages: messages });
+  } else {
+    res.redirect("/users/login");
+  }
 });
 
 router.post("/newmessage", upload.none(), sendMessage);

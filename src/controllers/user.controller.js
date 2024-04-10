@@ -3,6 +3,7 @@ import { body, validationResult } from "express-validator";
 import passport from "passport";
 
 import { User } from "../models/user.model.js";
+import { Message } from "../models/message.model.js";
 
 const registerUser = [
   body("firstName")
@@ -40,6 +41,7 @@ const registerUser = [
 
     if (!errors.isEmpty()) {
       res.render("signup", { firstName, lastName, username });
+      return;
     }
 
     try {
@@ -54,7 +56,14 @@ const registerUser = [
       });
 
       await user.save();
-      res.render("dashboard", { user });
+
+      // Authenticate user immediately after registration
+      req.login(user, (err) => {
+        if (err) {
+          return next(err);
+        }
+        return res.redirect("/dashboard");
+      });
     } catch (error) {
       return next(error);
     }
