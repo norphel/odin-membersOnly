@@ -24,11 +24,11 @@ block content
           p Thank you being a member of our private club. 
           for msg in messages
             div(class="message")
-              h3= msg.title 
-              p= msg.text
+              p(class="message-title")= msg.title 
+              p(class="message-text")= msg.text
               div(class="message-author-date")
-                p= msg.author 
-                p= msg.formattedCreationDate 
+                p #{msg.author.firstName} #{msg.author.lastName} 
+                p= msg.formattedCreationDate
 
       form(action="/dashboard/newmessage" method="POST" style={"margin" : "20px"})
         p Send a new message
