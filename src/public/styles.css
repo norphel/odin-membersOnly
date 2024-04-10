@@ -53,7 +53,8 @@ main form button[type="submit"] {
   color: rgb(0, 123, 255);
 }
 .signup-button,
-.login {
+.login,
+.send {
   border: none;
   border-radius: 1rem;
   background-color: rgb(0, 123, 255);
@@ -73,7 +74,8 @@ main form {
 main form span {
   color: red;
 }
-main form input {
+main form input,
+main form textarea {
   display: block;
   min-height: 1rem;
   border: 0.3px solid rgb(92, 92, 92);
@@ -91,6 +93,21 @@ main form div:last-of-type p {
 }
 main form div:last-of-type a {
   padding: 0;
+}
+
+.messages-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.message {
+  display: flex;
+  flex-direction: column;
+}
+.message-author-date {
+  display: flex;
+  justify-content: space-between;
 }
 @media (max-width: 480px) {
   .heading-logo,
