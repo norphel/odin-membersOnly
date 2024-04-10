@@ -12,11 +12,11 @@ block content
             p You are not an exclusive member yet! Join the private club to see the message author and dates.
             for msg in messages
               div(class="message")
-                h3= msg.title 
-                p= msg.text
+                p(class="message-title")= msg.title 
+                p(class="message-text")= msg.text
                 div(class="message-author-date")
-                  if msg.author.id = user.id
-                    p= msg.author 
+                  if msg.author.id === user.id
+                    p #{msg.author.firstName} #{msg.author.lastName} 
                     p= msg.formattedCreationDate
                   else
                     p Anonymous 
@@ -33,8 +33,8 @@ block content
 
         form(action="/dashboard/newmessage" method="POST" style={"margin" : "20px"})
           p Send a new message
-          input(type="text" id="title" name="title" required placeholder="Title")   
-          textarea(name="text", cols="20", rows="5" required placeholder="Message")
+          input(type="text" id="title" name="title" required placeholder="Title" value=(title === "undefined" ? "" : title))   
+          textarea(name="text", cols="20", rows="5" required placeholder="Message" value=(text === "undefined" ))
           button(type="submit" class="send") Send  
 
       a(href="/users/logout") Log Out

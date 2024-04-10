@@ -105,6 +105,16 @@ main form div:last-of-type a {
   display: flex;
   flex-direction: column;
 }
+.message-title {
+  font-weight: bold;
+  text-align: left;
+  font-style: normal;
+  font-size: 1.1rem;
+}
+.message-text {
+  text-align: left;
+  padding-bottom: 5px;
+}
 .message-author-date {
   display: flex;
   justify-content: space-between;

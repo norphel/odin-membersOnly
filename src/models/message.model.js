@@ -20,7 +20,7 @@ const messageSchema = new Schema(
 
 messageSchema.virtual("formattedCreationDate").get(function () {
   const createdAt = this.createdAt;
-  const mongth = createdAt.getMonth() + 1;
+  const month = createdAt.getMonth() + 1;
   const day = createdAt.getDate();
   const year = createdAt.getFullYear();
   return `${month}/${day}/${year}`;
