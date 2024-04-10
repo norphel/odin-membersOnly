@@ -1,7 +1,11 @@
 import { Router } from "express";
 import multer from "multer";
 const upload = multer();
-import { registerUser, loginUser } from "../controllers/user.controller.js";
+import {
+  registerUser,
+  loginUser,
+  logoutUser,
+} from "../controllers/user.controller.js";
 
 const router = Router();
 
@@ -24,4 +28,7 @@ router.get("/login", (req, res) => {
 });
 
 router.post("/login", upload.none(), loginUser);
+
+router.get("/logout", logoutUser);
+
 export default router;
